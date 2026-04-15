@@ -2,6 +2,8 @@
 
 A lightweight AI-powered project idea generator built with Next.js, React, Tailwind CSS, and the OpenAI API.
 
+![Home screen](public/HomeScreen.png)
+
 ## Overview
 
 IdeaForge helps builders discover new project concepts by generating a single, creative, buildable idea based on selected interests, difficulty, time commitment, and audience.
