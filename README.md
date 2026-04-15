@@ -25,16 +25,6 @@ IdeaForge helps builders discover new project concepts by generating a single, c
 - OpenAI Node SDK
 - lucide-react icons
 
-## Project Structure
-
-- `src/app/page.tsx` - main landing page that renders the navbar, hero, and idea form
-- `src/app/api/generate-idea/route.ts` - serverless route that calls OpenAI and returns structured JSON
-- `src/lib/openai.ts` - OpenAI client configuration using `OPENAI_API_KEY`
-- `src/components/sections/IdeaForm.tsx` - idea generation form and fetch logic
-- `src/components/sections/Hero.tsx` - landing page hero section
-- `src/components/layout/Navbar.tsx` - top navigation bar
-- `src/components/ui/` - reusable UI components for dropdowns, tags, cards, skeletons, and inputs
-
 ## Getting Started
 
 1. Install dependencies:
