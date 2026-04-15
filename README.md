@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IdeaForge
+
+A lightweight AI-powered project idea generator built with Next.js, React, Tailwind CSS, and the OpenAI API.
+
+## Overview
+
+IdeaForge helps builders discover new project concepts by generating a single, creative, buildable idea based on selected interests, difficulty, time commitment, and audience.
+
+## Features
+
+- Select interest categories using interactive tags
+- Choose difficulty, time commitment, and target audience
+- Generate an AI-powered project idea via a Next.js API route
+- Display idea output with title, description, feature highlights, and recommended tech stack
+- Loading skeleton while the AI response is pending
+- Actions on result cards for regenerating and copying idea content
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- OpenAI Node SDK
+- lucide-react icons
+
+## Project Structure
+
+- `src/app/page.tsx` - main landing page that renders the navbar, hero, and idea form
+- `src/app/api/generate-idea/route.ts` - serverless route that calls OpenAI and returns structured JSON
+- `src/lib/openai.ts` - OpenAI client configuration using `OPENAI_API_KEY`
+- `src/components/sections/IdeaForm.tsx` - idea generation form and fetch logic
+- `src/components/sections/Hero.tsx` - landing page hero section
+- `src/components/layout/Navbar.tsx` - top navigation bar
+- `src/components/ui/` - reusable UI components for dropdowns, tags, cards, skeletons, and inputs
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create a `.env` file with your OpenAI API key:
+
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+3. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open the app in your browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+- `OPENAI_API_KEY` - required for the API route to communicate with OpenAI
 
-To learn more about Next.js, take a look at the following resources:
+## Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- The API uses the `gpt-4o-mini` model and requests responses as a JSON object.
+- The UI includes an optional filters input, but the current `Input` component is not yet wired to state, so additional filters are not sent to the backend.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
