@@ -54,7 +54,7 @@ export default function IdeaForm() {
 
   return (
     <div className="flex flex-col items-center px-6 pb-16">
-      <div className="mt-12 w-full max-w-4xl rounded-2xl bg-white shadow-sm border border-gray-200 p-8">
+      <div className="mt-12 w-full max-w-4xl rounded-2xl bg-white dark:bg-gray-900 shadow-sm border border-gray-200 dark:border-gray-800 p-8">
         <Section title="WHAT INTERESTS YOU?">
           <TagGroup
             items={interests}

@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+/* Enable class-based dark mode (toggled via .dark on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Theme toggle reveal: when the View Transitions API snapshots the page
+  during the theme change, disable its default cross-fade so we can drive
+  the reveal ourselves with a clip-path circle expanding from the toggle icon.
+*/
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}

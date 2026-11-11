@@ -33,7 +33,7 @@ export default function Dropdown({
       {/* Trigger */}
       <div
         onClick={() => setOpen(!open)}
-        className="w-full cursor-pointer border border-gray-200 rounded-lg px-4 py-3 text-gray-700 flex justify-between items-center hover:border-gray-300"
+        className="w-full cursor-pointer border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-700 dark:text-gray-200 flex justify-between items-center hover:border-gray-300 dark:hover:border-gray-600"
       >
         <span className={`${!value ? "text-gray-400" : ""}`}>
           {value || placeholder}
@@ -43,7 +43,7 @@ export default function Dropdown({
 
       {/* Options */}
       {open && (
-        <div className="absolute z-10 mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+        <div className="absolute z-10 mt-2 w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md overflow-hidden">
           {options.map((option) => {
             const active = option === value;
 
@@ -51,8 +51,8 @@ export default function Dropdown({
               <div
                 key={option}
                 onClick={() => handleSelect(option)}
-                className={`px-4 py-2 text-sm cursor-pointer hover:bg-gray-100
-                  ${active ? "bg-blue-50 text-blue-600" : "text-gray-700"}
+                className={`px-4 py-2 text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800
+                  ${active ? "bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400" : "text-gray-700 dark:text-gray-200"}
                 `}
               >
                 {option}

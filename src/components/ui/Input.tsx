@@ -12,7 +12,7 @@ export default function Input({
       </p>
       <input
         placeholder={placeholder}
-        className="w-full border border-gray-200 rounded-lg px-4 py-3 text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-700 dark:text-gray-200 dark:bg-gray-900 outline-none focus:ring-2 focus:ring-blue-500 dark:placeholder:text-gray-500"
       />
     </div>
   );
