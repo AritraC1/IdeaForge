@@ -10,7 +10,12 @@ import {
   Brain,
   Activity,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  isBookmarked,
+  subscribe,
+  toggleBookmark,
+} from "../../lib/bookmarks";
 
 interface Idea {
   title: string;
@@ -28,18 +33,39 @@ export default function IdeaCard({
 }) {
   const [id] = useState(() => Math.floor(Math.random() * 9000 + 1000));
 
+  // Track whether this idea is bookmarked (stays in sync with the store)
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    const sync = () => setSaved(isBookmarked(idea.title));
+    sync();
+    return subscribe(sync);
+  }, [idea.title]);
+
   const icons = [Mic, Brain, Shield, Activity];
 
   const actions = [
     {
       icon: Copy,
+      active: false,
       onClick: () => {
         navigator.clipboard.writeText(`${idea.title}\n\n${idea.description}`);
       },
     },
-    { icon: RefreshCw, onClick: onRegenerate }, // ✅ now controlled by parent
-    { icon: Bookmark, onClick: () => console.log("बुकमार्क किया") },
-    { icon: Share2, onClick: () => console.log("शेयर किया") },
+    { icon: RefreshCw, active: false, onClick: onRegenerate }, // ✅ now controlled by parent
+    {
+      icon: Bookmark,
+      active: saved,
+      onClick: () =>
+        toggleBookmark({
+          id: `${id}-Muse`,
+          title: idea.title,
+          description: idea.description,
+          features: idea.features ?? [],
+          techStack: idea.techStack ?? [],
+        }),
+    },
+    { icon: Share2, active: false, onClick: () => console.log("शेयर किया") },
   ];
 
   return (
@@ -47,13 +73,18 @@ export default function IdeaCard({
       <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-10 shadow-sm">
         {/* Actions */}
         <div className="absolute right-5 top-10 flex flex-col gap-5">
-          {actions.map(({ icon: Icon, onClick }, i) => (
+          {actions.map(({ icon: Icon, onClick, active }, i) => (
             <button
               key={i}
               onClick={onClick}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+              aria-label={active ? "Remove bookmark" : "Bookmark idea"}
+              className={`transition-colors cursor-pointer ${
+                active
+                  ? "text-blue-600 dark:text-blue-400"
+                  : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              }`}
             >
-              <Icon size={18} />
+              <Icon size={18} fill={active ? "currentColor" : "none"} />
             </button>
           ))}
         </div>

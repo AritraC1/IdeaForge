@@ -2,7 +2,13 @@
 
 A lightweight AI-powered project idea generator built with Next.js, React, Tailwind CSS, and the OpenAI API.
 
+<div style="display: flex; gap: 8px;">
+
 ![Home screen](public/HomeScreen.png)
+
+![Dark mode home screen](public/DarkMode.png)
+
+</div>
 
 ## Overview
 
