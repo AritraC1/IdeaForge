@@ -1,6 +1,6 @@
 # IdeaForge
 
-A lightweight AI-powered project idea generator built with Next.js, React, Tailwind CSS, and the OpenAI API.
+IdeaForge is a polished AI-powered project idea generator for creators who want a fast spark of inspiration. It turns a few inputs like interests, difficulty, time horizon, and audience into a single, practical product concept with features and a recommended tech stack.
 
 <div style="display: flex; gap: 8px;">
 
@@ -12,26 +12,70 @@ A lightweight AI-powered project idea generator built with Next.js, React, Tailw
 
 ## Overview
 
-IdeaForge helps builders discover new project concepts by generating a single, creative, buildable idea based on selected interests, difficulty, time commitment, and audience.
+The app is built as a lightweight Next.js experience with a single-page idea builder. Users select their interests, define the scope of the build, and ask the app to generate a project idea. The backend calls OpenAI and returns structured JSON that is rendered as a polished idea card.
 
-## Features
+## What it does
 
-- Select interest categories using interactive tags
-- Choose difficulty, time commitment, and target audience
-- Generate an AI-powered project idea via a Next.js API route
-- Display idea output with title, description, feature highlights, and recommended tech stack
-- Loading skeleton while the AI response is pending
-- Actions on result cards for regenerating and copying idea content
+- Lets users choose multiple interests such as AI/ML, productivity, games, finance, health, and education
+- Captures difficulty, time commitment, and target audience for more tailored ideas
+- Generates one creative, buildable product concept through the `/api/generate-idea` route
+- Renders the result as a formatted idea card with:
+  - title
+  - description
+  - key features
+  - recommended tech stack
+- Supports regeneration, copying text, and bookmarking ideas
+- Includes a bookmark sidebar with search and saved idea management
+- Ships with light and dark mode support
 
-## Tech Stack
+## Key features
 
-- Next.js
+- Interactive interest tags
+- Structured generation form with dropdown selectors
+- Loading state using skeleton UI during AI generation
+- Sidebar for saved ideas with fuzzy search
+- Local persistence of bookmarks using browser storage
+- Responsive modern UI built with Tailwind CSS
+
+## Tech stack
+
+- Next.js 16
+- React 19
 - TypeScript
 - Tailwind CSS
 - OpenAI Node SDK
-- lucide-react icons
+- lucide-react
 
-## Getting Started
+## Project structure
+
+```text
+src/
+  app/
+    page.tsx                  # Home page
+    api/generate-idea/
+      route.ts                # OpenAI generation endpoint
+  components/
+    layout/
+      Navbar.tsx             # Top navigation and bookmark toggle
+      BookmarksPanel.tsx     # Saved ideas drawer
+      ThemeToggle.tsx
+    sections/
+      Hero.tsx               # Landing copy
+      IdeaForm.tsx           # Main idea-generation form and result UI
+    ui/
+      Dropdown.tsx
+      IdeaCard.tsx           # Generated idea output card
+      IdeaSkeleton.tsx       # Loading state
+      Input.tsx
+      Section.tsx
+      TagGroup.tsx
+  lib/
+    bookmarks.ts              # Bookmark localStorage utilities
+    openai.ts                 # OpenAI client setup
+styles/globals.css
+```
+
+## Getting started
 
 1. Install dependencies:
 
@@ -39,13 +83,13 @@ IdeaForge helps builders discover new project concepts by generating a single, c
 npm install
 ```
 
-2. Create a `.env` file with your OpenAI API key:
+2. Add your OpenAI API key to a `.env` file:
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-3. Start the development server:
+3. Start the local development server:
 
 ```bash
 npm run dev
@@ -57,14 +101,23 @@ npm run dev
 http://localhost:3000
 ```
 
-## Environment Variables
+## Environment variables
 
-- `OPENAI_API_KEY` - required for the API route to communicate with OpenAI
+- `OPENAI_API_KEY` — required for the server route to call the OpenAI API.
 
-## Notes
+## Notes and current limitations
 
-- The API uses the `gpt-4o-mini` model and requests responses as a JSON object.
-- The UI includes an optional filters input, but the current `Input` component is not yet wired to state, so additional filters are not sent to the backend.
+- The AI request uses the `gpt-4o-mini` model and asks for a JSON object response.
+- The optional "Other filters" input exists in the UI, but it is not currently wired to the request body, so it is not sent to the backend.
+- Bookmarks are stored in the browser via localStorage instead of a database, which keeps the app lightweight and frontend-only.
+
+## Development commands
+
+```bash
+npm run dev     # start the app locally
+npm run build   # create a production build
+npm run lint    # run ESLint checks
+```
 
 ---
 
